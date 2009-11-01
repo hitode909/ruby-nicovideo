@@ -23,6 +23,10 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert @vp.tags.length > 0
   end
 
+  def test_parse_published_at
+    assert_equal Time.parse('2007-03-06 00:33:00'), @vp.published_at
+  end
+
   # TODO: add test cases of openlist and mylist 
   def test_watch_ikinari
     vp = nil

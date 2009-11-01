@@ -79,7 +79,7 @@ module Nicovideo
       @tags = page.parser.search("div[@id='video_tags']//a[@rel='tag']").map{ |a| a.inner_text}
 
       # published_at
-      str = page.search("div[@id='WATCHHEADER']//p[@class='TXT12']/strong")[0].inner_text
+      str = page.at("div[@id='WATCHHEADER']//table//strong").inner_text
       tm = str.scan(/\d+/)
       @published_at = Time.mktime(*tm)
       
