@@ -76,11 +76,7 @@ module Nicovideo
       @title = page.parser.at('h1').inner_text
 
       # tags
-      div = page.parser.search("div#video_tags")
-      @tags = div.to_html.scan(/<a href=\"tag\/[\w\%]+?\">(.+?)<\/a>/ou).inject([]) {|arr, v|
-        puts_debug v[0]
-        arr << v[0]
-      }
+      @tags = page.parser.search("div[@id='video_tags']//a[@rel='tag']").map{ |a| a.inner_text}
 
       # published_at
       str = page.search("div[@id='WATCHHEADER']//p[@class='TXT12']/strong")[0].inner_text

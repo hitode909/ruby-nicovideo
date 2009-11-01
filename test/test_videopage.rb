@@ -19,6 +19,10 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_equal '新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師', @vp.title
   end
 
+  def test_parse_tags
+    assert @vp.tags.length > 0
+  end
+
   # TODO: add test cases of openlist and mylist 
   def test_watch_ikinari
     vp = nil
