@@ -3,19 +3,19 @@ require 'timeout'
 require 'rexml/document'
 
 module Nicovideo
-	class Thumbnail
+  class Thumbnail
     def initialize(proxy_url = nil)
       @proxy_url =  proxy_url
     end
-		
-		def get(video_id, wait_sec = 10, retry_max = 2)
-			root = get_response(video_id, wait_sec, retry_max)
-			
-			get_elements(root.elements["thumb"])
-		end
 
-		def get_response(video_id, wait_sec, retry_max)
-			retry_count = 0
+    def get(video_id, wait_sec = 10, retry_max = 2)
+      root = get_response(video_id, wait_sec, retry_max)
+
+      get_elements(root.elements["thumb"])
+    end
+
+    def get_response(video_id, wait_sec, retry_max)
+      retry_count = 0
       begin
         body = timeout(wait_sec) do
           open("http://ext.nicovideo.jp/api/getthumbinfo/#{video_id}", :proxy => @proxy_url) do |f|
@@ -31,24 +31,24 @@ module Nicovideo
         retry_count += 1
         retry
       end
-		end
-		
-		def get_elements(parent)
-			thumbnail_info = ThumbInfo.new
+    end
 
-			parent.each_element do |element|
-				if element.name == 'tags' then
+    def get_elements(parent)
+      thumbnail_info = ThumbInfo.new
+
+      parent.each_element do |element|
+        if element.name == 'tags' then
           thumbnail_info.tags[element.attributes['domain']] = []
           element.each_element do |child|
             thumbnail_info.tags[element.attributes['domain']] << child.text
           end
-					next
-			  end
-				thumbnail_info[element.name] = element.text
-			end
-  		thumbnail_info
-		end
-	end
+          next
+        end
+        thumbnail_info[element.name] = element.text
+      end
+      thumbnail_info
+    end
+  end
 
   class ThumbInfo < Hash
     attr_accessor :tags
