@@ -46,6 +46,13 @@ module Nicovideo
         end
         thumbnail_info[element.name] = element.text
       end
+      thumbnail_info["view_counter"]   = thumbnail_info["view_counter"].to_i
+      thumbnail_info["size_low"]       = thumbnail_info["size_low"].to_i
+      thumbnail_info["size_high"]      = thumbnail_info["size_high"].to_i
+      thumbnail_info["first_retrieve"] = Time.parse thumbnail_info["first_retrieve"]
+      thumbnail_info["comment_num"]    = thumbnail_info["comment_num"].to_i
+      thumbnail_info["embeddable"]     = thumbnail_info["embeddable"].to_i
+      thumbnail_info["mylist_counter"] = thumbnail_info["mylist_counter"].to_i
       thumbnail_info
     end
   end
