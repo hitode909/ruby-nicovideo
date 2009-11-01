@@ -27,6 +27,10 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_equal Time.parse('2007-03-06 00:33:00'), @vp.published_at
   end
 
+  def test_parse_description
+    assert_equal 'レッツゴー！陰陽師（フルコーラスバージョン）', @vp.description
+  end
+
 #   def test_parse_csrf_token
 #     assert_equal 'XXX', @vp.csrf_token
 #   end

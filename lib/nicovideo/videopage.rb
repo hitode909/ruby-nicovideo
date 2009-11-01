@@ -8,7 +8,7 @@ module Nicovideo
       @video_id = video_id
       @params   = nil
       @url      = BASE_URL + '/watch/' + @video_id
-      register_getter ["title", "tags", "published_at", "csrf_token"]
+      register_getter ["title", "tags", "published_at", "description", "csrf_token"]
     end
 
     attr_reader :video_id, :url
@@ -82,7 +82,10 @@ module Nicovideo
       str = page.at("div[@id='WATCHHEADER']//table//strong").inner_text
       tm = str.scan(/\d+/)
       @published_at = Time.mktime(*tm)
-      
+
+      #description
+      @description = page.search("#WATCHHEADER table p.font12")[3].inner_text
+
       # csrf_token
 #      @csrf_token = page.search("form[@name='mylist_form']//input[@name='csrf_token']")[0]['value']
     end
