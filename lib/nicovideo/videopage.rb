@@ -84,7 +84,7 @@ module Nicovideo
       @published_at = Time.mktime(*tm)
       
       # csrf_token
-      @csrf_token = page.search("form[@name='mylist_form']//input[@name='csrf_token']")[0]['value']
+#      @csrf_token = page.search("form[@name='mylist_form']//input[@name='csrf_token']")[0]['value']
     end
     
     def get_params

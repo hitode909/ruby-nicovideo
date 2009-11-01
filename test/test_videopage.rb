@@ -27,6 +27,10 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_equal Time.parse('2007-03-06 00:33:00'), @vp.published_at
   end
 
+#   def test_parse_csrf_token
+#     assert_equal 'XXX', @vp.csrf_token
+#   end
+
   # TODO: add test cases of openlist and mylist 
   def test_watch_ikinari
     vp = nil
@@ -54,12 +58,12 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_instance_of(String,               vp.title)
     assert_instance_of(Time,                 vp.published_at)
     assert_instance_of(Nicovideo::Comments,  vp.comments)
-    assert_instance_of(String,               vp.csrf_token)
+#    assert_instance_of(String,               vp.csrf_token)
 
     puts vp.tags
     puts vp.title
     puts vp.published_at
-    puts vp.csrf_token
+#    puts vp.csrf_token
  #   assert_nothing_raised { vp.flv }
     #assert_instance_of(String, vp.flv)
     #assert_instance_of(String, vp.video)
@@ -76,7 +80,7 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
         assert_instance_of(Array,                v.tags)
         assert_instance_of(String,               v.title)
         assert_instance_of(Nicovideo::Comments,  v.comments)
-        assert_instance_of(String,               v.csrf_token)
+#        assert_instance_of(String,               v.csrf_token)
         # assert_instance_of(String, v.flv)
         # assert_instance_of(String, v.video)
       }
@@ -98,7 +102,7 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_raise(Nicovideo::NotFound) { vp.comments }
     assert_raise(Nicovideo::NotFound) { vp.flv }
     assert_raise(Nicovideo::NotFound) { vp.video }
-    assert_raise(Nicovideo::NotFound) { vp.csrf_token }
+#    assert_raise(Nicovideo::NotFound) { vp.csrf_token }
 
     sleep 1
   end
@@ -115,7 +119,7 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_raise(Nicovideo::NotFound) { vp.comments }
     assert_raise(Nicovideo::NotFound) { vp.flv }
     assert_raise(Nicovideo::NotFound) { vp.video }
-    assert_raise(Nicovideo::NotFound) { vp.csrf_token }
+#    assert_raise(Nicovideo::NotFound) { vp.csrf_token }
 
     sleep 1
   end
