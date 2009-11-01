@@ -91,7 +91,7 @@ module Nicovideo
       puts_info result_xpath.size.to_s
       @videos = result_xpath.inject([]) {|arr, v|
         vp = VideoPage.new(@agent, v.attributes['href'].to_s.sub(/watch\/(\w+)$/,'\1'))
-        vp.title = v.inner_html
+        vp.title = v.inner_text
         arr << vp
       }
     end
