@@ -14,6 +14,14 @@ class Test_Thumbnail < Test::Unit::TestCase
     assert thumbnail["size_high"] > 0
   end
 
+  def test_smart_get
+    thumbnail = @client.get("sm9")
+    assert("sm9", thumbnail.video_id)
+    assert_raise(NoMethodError) {
+      thumbnail.undefined_key
+    }
+  end
+
   def test_get_nonexistent_video
     assert_raise(::Errno::ENOENT) {
       @client.get "sm1"

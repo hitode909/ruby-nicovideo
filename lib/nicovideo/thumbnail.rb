@@ -71,5 +71,9 @@ module Nicovideo
     def tag_flatten
       @tag_flatten ||= @tags.values.flatten
     end
+
+    def method_missing(name, *args)
+      self.has_key?(name.to_s) ? self[name.to_s] : super
+    end
   end
 end
