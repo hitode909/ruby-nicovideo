@@ -86,11 +86,11 @@ module Nicovideo
         }
       end
 
-      result_xpath = page/'//div[@class="cmn_thumb_R"]//p[@class="TXT12"]/a[@class="video"]'
+      result_xpath = page/'a[@class="video"]'
       
       puts_info result_xpath.size.to_s
       @videos = result_xpath.inject([]) {|arr, v|
-        vp = VideoPage.new(@agent, v.attributes['href'].sub(/watch\/(\w+)$/,'\1'))
+        vp = VideoPage.new(@agent, v.attributes['href'].to_s.sub(/watch\/(\w+)$/,'\1'))
         vp.title = v.inner_html
         arr << vp
       }

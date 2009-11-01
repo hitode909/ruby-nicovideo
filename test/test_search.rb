@@ -14,6 +14,14 @@ class TestNicovideoSearch < Test::Unit::TestCase
       puts v.id + ':' + v.title
     }
   end
+
+  def test_search_succeed
+    result = @nv.search("ミク")
+    assert result.videos.length > 0
+    assert result.total_size > 0
+    
+  end
+  
 =begin    
   def test_search_testing0
     result = @nv.search("aaa")
