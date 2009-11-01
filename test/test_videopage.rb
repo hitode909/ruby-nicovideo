@@ -12,6 +12,11 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     @vid_valid    = 'sm9' # 閲覧可能(短い動画)
     @vid_invalid  = 'smfdsafd' # IDが間違っている
     @vid_notfound = 'sm500875' # 削除済み
+    @vp = @nv.watch(@vid_valid)
+  end
+
+  def test_parse_title
+    assert_equal '新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師', @vp.title
   end
 
   # TODO: add test cases of openlist and mylist 
