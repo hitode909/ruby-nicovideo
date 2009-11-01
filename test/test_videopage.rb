@@ -31,6 +31,11 @@ class TestNicovideoVideoPage < Test::Unit::TestCase
     assert_equal 'レッツゴー！陰陽師（フルコーラスバージョン）', @vp.description
   end
 
+  def test_info
+    assert_equal 21138631, @vp.info['size_high']
+    assert_equal 'レッツゴー！陰陽師（フルコーラスバージョン）', @vp.info['description']
+  end
+
 #   def test_parse_csrf_token
 #     assert_equal 'XXX', @vp.csrf_token
 #   end

@@ -70,6 +70,10 @@ module Nicovideo
       return false
     end
 
+    def info
+      @info ||= Thumbnail.new.get(self.id)
+    end
+
     private
     def parse(page)
       # title
